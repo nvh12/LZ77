@@ -34,6 +34,8 @@ public class Main {
         for (lz77Set r : res) {
             System.out.print(r.toString() + " ");
         }
+        scanner.nextLine();
+        scanner.nextLine();
         scanner.close();
     }
 }
