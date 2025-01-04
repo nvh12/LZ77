@@ -11,6 +11,9 @@ public class lz77Set {
 
     @Override
     public String toString() {
-        return "(" + offset + ", " + length + ", " + character + ")";
+        if (this.character == '\n')
+            return "(" + offset + ", " + length + ", " + "\\n" + ")";
+        else
+            return "(" + offset + ", " + length + ", " + character + ")";
     }
 }
