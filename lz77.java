@@ -11,8 +11,7 @@ public class lz77 {
             for (int j = Math.max(0, index - searchBufferSize); j < index; j++) {
                 int length = 0;
                 while (index + length < inputLength && length < lookAheadBufferSize
-                        && input.charAt(j + length) == input.charAt(index + length)
-                        && j + length < index) {
+                        && input.charAt(j + length) == input.charAt(index + length)) {
                     length++;
                 }
                 if (length > maxLength) {
@@ -49,9 +48,8 @@ public class lz77 {
             if (charMap.containsKey(curr)) {
                 for (int position : charMap.get(curr)) {
                     int length = 0;
-                    while (length < lookAheadBufferSize && index + length < inputLength
-                            && input.charAt(index + length) == input.charAt(position + length)
-                            && position + length < index) {
+                    while (index + length < inputLength
+                            && input.charAt(index + length) == input.charAt(position + length)) {
                         length++;
                     }
                     if (length > maxLength) {
@@ -80,13 +78,14 @@ public class lz77 {
             int maxLength = 0;
             int maxOffset = 0;
             int start = Math.max(0, index - searchBufferSize);
-            String searchBuffer = input.substring(start, index);
-            for (int i = 1; i <= lookAheadBufferSize && index + i < inputLength; i++) {
+            int end = Math.min(inputLength, index + lookAheadBufferSize);
+            String searchBuffer = input.substring(start, end);
+            for (int i = 1; i <= lookAheadBufferSize && index + i <= inputLength; i++) {
                 String targeString = input.substring(index, index + i);
                 int position = searchBuffer.indexOf(targeString);
-                if (position != -1) {
+                if (position != -1 && position < index - start) {
                     maxLength = i;
-                    maxOffset = searchBuffer.length() - position;
+                    maxOffset = index - position;
                 }
             }
             if (maxLength > 1) {
