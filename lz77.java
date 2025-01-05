@@ -48,7 +48,7 @@ public class lz77 {
             if (charMap.containsKey(curr)) {
                 for (int position : charMap.get(curr)) {
                     int length = 0;
-                    while (index + length < inputLength
+                    while (index + length < inputLength && length < lookAheadBufferSize
                             && input.charAt(index + length) == input.charAt(position + length)) {
                         length++;
                     }
@@ -85,7 +85,7 @@ public class lz77 {
                 int position = searchBuffer.indexOf(targeString);
                 if (position != -1 && position < index - start) {
                     maxLength = i;
-                    maxOffset = index - position;
+                    maxOffset = index - start - position;
                 }
             }
             if (maxLength > 1) {
