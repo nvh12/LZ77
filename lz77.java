@@ -10,9 +10,9 @@ public class lz77 {
             int maxOffset = 0;
             for (int j = Math.max(0, index - searchBufferSize); j < index; j++) {
                 int length = 0;
-                while (index + length < inputLength
+                while (index + length < inputLength && length < lookAheadBufferSize
                         && input.charAt(j + length) == input.charAt(index + length)
-                        && length < lookAheadBufferSize) {
+                        && j + length < index) {
                     length++;
                 }
                 if (length > maxLength) {
