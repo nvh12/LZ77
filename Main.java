@@ -49,8 +49,6 @@ public class Main {
                 System.out.println("Test output: ");
                 String test = scanner.nextLine();
 
-                System.out.println("test: "+ test);
-
                 String stringRes1 = "";
                 String stringRes2 = "";
                 String stringRes3 = "";
@@ -84,6 +82,7 @@ public class Main {
                     System.out.println("Không giảm được kích thước của chuỗi gốc");
                 }
 
+                System.out.println();
                 System.out.println("------THỜI GIAN THỰC HIỆN ------");
                 System.out.println("Thời gian thực hiện duyệt tuần tự: "+ linearTime + " ns");
                 System.out.println("Thời gian thực hiện tìm kiếm bảng băm: "+ hashMapTime + " ns");
